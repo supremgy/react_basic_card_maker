@@ -28,6 +28,16 @@ class AuthService {
         throw new Error(`not supported provider: ${providerName}`);
     }
   }
+
+  onAuthChange(onUserChanged) {
+    this.firebaseAuth.onAuthStateChanged((user) => {
+      onUserChanged(user);
+    });
+  }
+
+  logout() {
+    this.firebaseAuth.signOut();
+  }
 }
 
 export default AuthService;
