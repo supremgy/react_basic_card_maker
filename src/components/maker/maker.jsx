@@ -1,48 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Preview from '../preview/preview';
 import styles from './maker.module.css';
 const Maker = ({ FileInput, authService }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'Noah',
-      company: 'Apple',
-      theme: 'dark',
-      title: 'Software Engineer',
-      email: 'supremgy@icloud.com',
-      message: 'Just DO!',
-      fileName: 'noah',
-      fileURL: null,
-    },
-    2: {
-      id: '2',
-      name: 'Aya',
-      company: 'Apple',
-      theme: 'colorful',
-      title: 'Software Engineer',
-      email: 'supremgy@icloud.com',
-      message: 'Just DO!',
-      fileName: 'noah',
-      fileURL: null,
-    },
-    3: {
-      id: '3',
-      name: 'Noah3',
-      company: 'Apple',
-      theme: 'light',
-      title: 'Software Engineer',
-      email: 'supremgy@icloud.com',
-      message: 'Just DO!',
-      fileName: 'noah',
-      fileURL: null,
-    },
-  });
+  const navigateState = useLocation().state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(navigateState && navigateState.id);
 
   const navigate = useNavigate();
   const onLogout = () => {
